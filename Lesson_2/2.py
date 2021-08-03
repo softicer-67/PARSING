@@ -1,3 +1,4 @@
+# sourcery skip: list-comprehension
 '''
 Вариант 2
 Необходимо собрать информацию по продуктам питания с сайтов:
@@ -18,37 +19,43 @@ from bs4 import BeautifulSoup as bs
 import requests as req
 import lxml
 import pandas as pd
+from fake_headers import Headers
 
 
-url = 'https://roscontrol.com/'
+from bs4 import BeautifulSoup as bs
+import requests as req
+import lxml
+import pandas as pd
 
-url += 'category/produkti/'
-category = url + 'category/produkti/bakaleya/'
-products = url + 'category/produkti/bakaleya/krupi-i-zlakovie-hlopya/'
 
-response = req.get(url)
-soup = bs(response.text, 'lxml')
+url = 'https://roscontrol.com'
+url1 = url + '/category/produkti/'
+category = url + '/category/produkti/bakaleya/'
+products = url + '/category/produkti/bakaleya/krupi-i-zlakovie-hlopya/'
+
+res1 = req.get(url1)
+soup = bs(res1.text, 'lxml')
 cat_products = [i.text.strip() for i in soup.find_all(class_="catalog__category-name")]
 
-response = req.get(url + category)
-soup = bs(response.text, 'lxml')
+res2 = req.get(url1 + category)
+soup = bs(res2.text, 'lxml')
 pod_cat_products = [i.text.strip() for i in soup.find_all(class_="catalog__category-name")]
 
-response = req.get(url + products)
-soup = bs(response.text, 'lxml')
-krupi = [i.text.strip() for i in soup.find_all(class_="product__item-link")]
-links = ['https://roscontrol.com/' + i['href'] for i in soup.find_all(class_='block-product-catalog__item')]
+res3 = req.get(url1 + products)
+soup = bs(res3.text, 'lxml')
+krupa = [i.text.strip() for i in soup.find_all(class_="product__item-link")]
+links = [url + i['href'] for i in soup.find_all(class_='block-product-catalog__item')]
 
 res_ocenki = []
 for i in range(len(links)):
-    response = req.get(links[i])
-    soup = bs(response.text, 'lxml')
+    res4 = req.get(links[i])
+    soup = bs(res4.text, 'lxml')
     x = soup.find(id='product__single-rev-rating').text.split()
     res_ocenki.append(f'Общая = {x[0]}, Безопасность = {x[3]}, Качество = {x[10]}')
 
-all_res = []
-for num, i in enumerate(krupi):
-    all_res.append({
+result = []
+for num, i in enumerate(krupa):
+    result.append({
         'Категория': cat_products[8],
         'Подкатегория': pod_cat_products[3],
         'Наименование': i,
@@ -56,9 +63,7 @@ for num, i in enumerate(krupi):
         'Оценка': res_ocenki[num]
     })
 
-for i in all_res:
+for i in result:
     print(i)
 
-pd.DataFrame(all_res).to_csv('dump.csv')
-
-
+pd.DataFrame(result).to_csv('dump.csv')
