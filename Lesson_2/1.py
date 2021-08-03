@@ -10,3 +10,20 @@
 и расположение). Структура должна быть одинаковая для вакансий с обоих сайтов. Общий результат можно вывести
 с помощью dataFrame через pandas.
 '''
+
+import random
+import time
+from bs4 import BeautifulSoup as bs
+import requests as req
+from fake_headers import Headers
+
+
+header = Headers(headers=True).generate()
+url = 'https://hh.ru/search/vacancy?text=Python'
+response = req.get(url)
+
+print(response)
+
+'''Не осилил, страничка не отдает данные, пишет <Response [404]>
+    Но на этом сайте есть API, на нем бы наверное получилось...
+'''
