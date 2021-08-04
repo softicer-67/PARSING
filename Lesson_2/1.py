@@ -11,19 +11,44 @@
 с помощью dataFrame через pandas.
 '''
 
-import random
-import time
 from bs4 import BeautifulSoup as bs
 import requests as req
-from fake_headers import Headers
+import re
+import lxml
+import pandas as pd
+
+option = 'python'
+
+http = 'https://www.superjob.ru'
+url = f'https://russia.superjob.ru/vacancy/search/?keywords={option}'
+
+respond = req.get(url)
+soup = bs(respond.text, 'lxml')
+vac = [i.text.strip() for i in soup.select('div a')]
+lk = [i['href'] for i in soup.select('div a')]
+price = [str(i.text).replace('\xa0', ' ') for i in soup.find_all(class_="_1h3Zg _2Wp8I _2rfUm _2hCDz _2ZsgW")]
+
+vacans = []
+link = []
+
+for i in vac:
+    if f'{option}' in i.lower():
+        vacans.append(i)
+for i in lk:
+    if '/vakansii/' in i:
+        link.append(http + i)
 
 
-header = Headers(headers=True).generate()
-url = 'https://hh.ru/search/vacancy?text=Python'
-response = req.get(url)
+result = []
+for i in range(20):
+    result.append({
+        'Вакансия': vacans[i],
+        'Ссылка': link[i],
+        'Зарплата': price[i]
 
-print(response)
+    })
 
-'''Не осилил, страничка не отдает данные, пишет <Response [404]>
-    Но на этом сайте есть API, на нем бы наверное получилось...
-'''
+for i in result:
+    print(i)
+
+pd.DataFrame(result).to_csv('dump.csv')
