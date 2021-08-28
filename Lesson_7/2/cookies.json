@@ -1,0 +1,145 @@
+[
+    {
+        "domain": "mail.yandex.com",
+        "expiry": 1630156763,
+        "httpOnly": false,
+        "name": "app_badge_up_to_date_1474073346",
+        "path": "/",
+        "secure": false,
+        "value": "1"
+    },
+    {
+        "domain": "mail.yandex.com",
+        "expiry": 1945707553,
+        "httpOnly": false,
+        "name": "stngs",
+        "path": "/",
+        "secure": true,
+        "value": "stngs.1%3Acolorful%3A%3Atrue%3Atrue"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 1661692748,
+        "httpOnly": false,
+        "name": "yandex_login",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "gbtest2021"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 1630158549,
+        "httpOnly": false,
+        "name": "_ym_visorc",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "b"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 2147483647,
+        "httpOnly": true,
+        "name": "Session_id",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "3:1630156748.5.0.1630156748398:58Khsg:28.1|1474073346.0.2|11:157221.148185.t5RAW3NKX64oJCP-AmYRhgdPDbM"
+    },
+    {
+        "domain": "mail.yandex.com",
+        "expiry": 1630761556,
+        "httpOnly": false,
+        "name": "ymai_iale",
+        "path": "/",
+        "secure": false,
+        "value": "0"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 1661692743,
+        "httpOnly": false,
+        "name": "_ym_d",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "1630156744"
+    },
+    {
+        "domain": ".yandex.com",
+        "httpOnly": false,
+        "name": "ys",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "udn.cDpnYnRlc3QyMDIx"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 1661692743,
+        "httpOnly": false,
+        "name": "_ym_uid",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "1630156744594092172"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 2147483647,
+        "httpOnly": false,
+        "name": "yp",
+        "path": "/",
+        "secure": true,
+        "value": "1945516748.udn.cDpnYnRlc3QyMDIx"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 1945516743,
+        "httpOnly": false,
+        "name": "yandexuid",
+        "path": "/",
+        "secure": true,
+        "value": "886683021630156743"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 1661692752,
+        "httpOnly": false,
+        "name": "gdpr",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "0"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 2147483647,
+        "httpOnly": false,
+        "name": "L",
+        "path": "/",
+        "secure": false,
+        "value": "AQ1SdEEMUQFKBUFRTQBTY1xNe351AXt7NCFFLBkhAQlQXQ==.1630156748.14711.318265.b098653406c8acbb5c5dd7a67a0f8ec8"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 1630228749,
+        "httpOnly": false,
+        "name": "_ym_isad",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "2"
+    },
+    {
+        "domain": ".yandex.com",
+        "expiry": 2147483647,
+        "httpOnly": true,
+        "name": "sessionid2",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "3:1630156748.5.0.1630156748398:58Khsg:28.1|1474073346.0.2|11:157221.148185.t5RAW3NKX64oJCP-AmYRhgdPDbM"
+    }
+]
