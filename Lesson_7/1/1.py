@@ -30,7 +30,7 @@ click_login = driver.find_element_by_id('passp:sign-in').click()
 # Ввод пароля
 time.sleep(1)
 pass_input = driver.find_element_by_id('passp-field-passwd')
-pass_input.send_keys('333f1650')
+pass_input.send_keys('8732548738475')
 time.sleep(1)
 click_button = driver.find_element_by_id('passp:sign-in').click()
 time.sleep(1)
