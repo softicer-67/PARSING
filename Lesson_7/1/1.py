@@ -58,7 +58,7 @@ for i in range(1, 20):
     time.sleep(3)
     try:
         read_post()
-        driver.find_element_by_xpath("//html[@id='nb-1']/body/div[2]/div[7]/div/div[3]/div[3]/div[3]/div/div[5]/div/div/div/div/div/a[2]/span[2]").click()
+        driver.find_element_by_xpath("//div[5]/div/div/div/div/div/a[2]/span[2]").click()
         time.sleep(2)
     except:
         break
