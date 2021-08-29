@@ -13,6 +13,7 @@ from pymongo import MongoClient
 import pandas as pd
 import csv
 import json
+from mail_pass import yandex_pass
 
 
 driver = webdriver.Chrome('./chromedriver.exe')
