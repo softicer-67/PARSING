@@ -17,49 +17,53 @@ import json
 
 driver = webdriver.Chrome('./chromedriver.exe')
 
-driver.get('https://passport.yandex.com/auth')  # Запускает браузер
-time.sleep(1)
+driver.get("https://passport.yandex.ru/auth")
 
-# Ввод логина
-email_input = driver.find_element_by_id('passp-field-login')
-email_input.clear()
-email_input.send_keys('gbtest2021')
-time.sleep(1)
-click_login = driver.find_element_by_id('passp:sign-in').click()
+driver.find_element_by_id("passp-field-login").clear()
+driver.find_element_by_id("passp-field-login").send_keys("gbtest2021")
+driver.find_element_by_id("passp:sign-in").click()
+time.sleep(2)
+driver.find_element_by_id("passp-field-passwd").send_keys("8732548738475")
+time.sleep(2)
+driver.find_element_by_id("passp:sign-in").click()
+time.sleep(2)
+driver.get("https://mail.yandex.ru/")
 
-# Ввод пароля
-time.sleep(1)
-pass_input = driver.find_element_by_id('passp-field-passwd')
-pass_input.send_keys('8732548738475')
-time.sleep(1)
-click_button = driver.find_element_by_id('passp:sign-in').click()
-time.sleep(1)
-
-url = 'https://mail.yandex.com/'
-
-print('Проверка почты')
-last_text = 80
 post = []
-for i in range(69, last_text):
-    try:
-        driver.get(f'https://mail.yandex.com/?uid=1474073346#message/1767662853742919{i}')
-        time.sleep(2)
-        send_time = driver.find_element_by_xpath('//div[5]/div[1]/div/div[2]/div[1]/div[2]/div[3]/div[1]/div[3]')
-        theme = driver.find_element_by_xpath('//div[5]/div/div/div[2]/div/div/div/div/span/div')
-        text = driver.find_element_by_xpath('//div[3]/div/div[5]/div[1]/div/div[3]')
-        sender = driver.find_element_by_xpath('//div[5]/div[1]/div/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/span[2]/span[1]')
-        time.sleep(1)
-    except NoSuchElementException:
-        continue
 
+
+def read_post():
+    send_time = driver.find_element_by_xpath('//div[5]/div[1]/div/div[2]/div[1]/div[2]/div[3]/div[1]/div[3]').text
+    theme = driver.find_element_by_xpath('//div[5]/div/div/div[2]/div/div/div/div/span/div').text
+    text = driver.find_element_by_xpath('//div[3]/div/div[5]/div[1]/div/div[3]').text
+    sender = driver.find_element_by_xpath('//div[5]/div[1]/div/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/span[2]/span[1]').text
     post.append({
-        'От кого': sender.text,
-        'Тема письма': theme.text,
-        'Время отправки': send_time.text,
-        'Текст письма': text.text
+        'От кого': sender,
+        'Тема письма': theme,
+        'Время отправки': send_time,
+        'Текст письма': text
     })
+    pprint(post)
+    return send_time, theme, text, sender
+
+
+print('Начинаем просмотр почты...')
+driver.get("https://mail.yandex.ru/?uid=1474073346#tabs/relevant")
+time.sleep(3)
+driver.find_element_by_xpath("//div[5]/div/div/div/div[2]/div/div/div/div/div/a/div/span/span[2]/span").click()
+time.sleep(1)
+
+for i in range(1, 20):
+    print('Письмо: ', i)
+    time.sleep(3)
+    try:
+        read_post()
+        driver.find_element_by_xpath("//html[@id='nb-1']/body/div[2]/div[7]/div/div[3]/div[3]/div[3]/div/div[5]/div/div/div/div/div/a[2]/span[2]").click()
+        time.sleep(2)
+    except:
+        break
+
 pd.DataFrame(post).to_csv('post.csv', mode='w', index=False)
-pprint(post)
 
 
 def to_mongo():
@@ -75,8 +79,6 @@ def to_mongo():
 to_mongo()
 
 print()
-print('Писем больше нет')
+print('Почты больше нет в почтовом ящике...')
 
 driver.close()
-
-
